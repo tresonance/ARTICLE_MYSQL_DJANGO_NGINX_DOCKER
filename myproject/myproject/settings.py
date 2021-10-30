@@ -189,6 +189,7 @@ INSTALLED_APPS = [
     'meta',
     'sortedm2m',
     'taggit',
+    'aldryn_search',
 
     'utils',
 ]
@@ -214,7 +215,7 @@ CMS_LANGUAGES = {
             'name': gettext('en'),
             'redirect_on_fallback': True,
         },
-        
+
         {
             'public': True,
             'code': 'fr',
@@ -269,3 +270,27 @@ AUTHENTICATION_BACKENDS = [
 "django.contrib.auth.backends.ModelBackend",
 # "allauth.account.auth_backends.AuthenticationBackend",
 ]
+
+#aldryn_search
+HAYSTACK_CONNECTIONS = {
+    'en': {
+        'ENGINE': 'haystack.backends.solr_backend.SolrEngine',
+        'URL': 'http://my-solr-server/solr/my-site-en/',
+        'TIMEOUT': 60 * 5,
+        'INCLUDE_SPELLING': True,
+        'BATCH_SIZE': 100,
+    },
+    'fr': {
+        'ENGINE': 'haystack.backends.solr_backend.SolrEngine',
+        'URL': 'http://my-solr-server/solr/my-site-fr/',
+        'TIMEOUT': 60 * 5,
+        'INCLUDE_SPELLING': True,
+        'BATCH_SIZE': 100,
+    },
+}
+
+HAYSTACK_ROUTERS = ['aldryn_search.router.LanguageRouter',]
+ALDRYN_SEARCH_LANGUAGE_FROM_ALIAS = lambda alias: alias.split('-')[-1]
+
+#to use aldryn_search apphook
+ALDRYN_SEARCH_REGISTER_APPHOOK=True

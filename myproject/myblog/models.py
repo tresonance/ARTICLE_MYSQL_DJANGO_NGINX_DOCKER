@@ -602,7 +602,7 @@ class AuthorEntriesPlugin(BasePostPlugin):
     authors = models.ManyToManyField(
         dj_settings.AUTH_USER_MODEL,
         verbose_name=_("authors"),
-        #limit_choices_to={"myblog_post_author__publish": True},
+        limit_choices_to={"is_staff": True},
     )
 
     app_config = AppHookConfigField(BlogConfig, null=True, verbose_name=_("app. config"), blank=True, related_name="author_basePostPlugin_app_conf")

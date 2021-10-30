@@ -89,11 +89,14 @@ class LatestEntriesForm(BlogPluginForm):
 class AuthorPostsForm(BlogPluginForm):
     """Custom form for BlogAuthorPostsPlugin to apply distinct to the list of authors in plugin changeform."""
 
+    '''
+    Choices are: authorentriesplugin, created_usergroups, created_users, date_joined, djangocms_usersettings, email, filer_clipboards, filer_folder_permissions, filer_owned_folders, first_name, globalpagepermission, groups, id, is_active, is_staff, is_superuser, last_login, last_name, logentry, owned_files, pagepermission, pageuser, password, post_author, user_permissions, username
 
+    '''
     def __init__(self, *args, **kwargs):
         super(AuthorPostsForm, self).__init__(*args, **kwargs)
         # apply distinct due to django issue #11707
-        qs = User.objects.filter(is_superuser=True).distinct()
+        qs = User.objects.filter(is_staff=True).distinct()
         #qs = Pos.objects.filter(author_id=my_model.other).distinct()
         self.fields["authors"].queryset  = qs
 
