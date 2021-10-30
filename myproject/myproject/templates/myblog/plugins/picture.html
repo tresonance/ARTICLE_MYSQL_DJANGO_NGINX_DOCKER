@@ -1,0 +1,15 @@
+{% load thumbnail %}
+
+{% if link %}<a href="{{ link }}">{% endif %}
+   {% if placeholder == "content" %}
+    <img src="{% thumbnail picture.image 300x600 %}"
+{% if picture.alt %} alt="{{ picture.alt }}"{% endif %}
+{% if picture.longdesc %} title="{{ picture.longdesc }}"{% endif %} />
+   {% else %}
+     {% if placeholder == "authorbio" %}
+    <img src="{% thumbnail picture.image 50x50 crop %}"
+{% if picture.alt %} alt="{{ picture.alt }}"{% endif %}
+{% if picture.longdesc %} title="{{ picture.longdesc }}"{% endif %} />
+      {% endif %}
+    {% endif %}
+{% if link %}</a>{% endif %}
