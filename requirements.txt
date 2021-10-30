@@ -28,3 +28,4 @@ django-sortedm2m
 django-taggit-autosuggest
 lxml
 aldryn-common
+django-haystack
