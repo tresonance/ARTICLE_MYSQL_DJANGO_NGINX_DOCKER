@@ -155,7 +155,6 @@ class TaggedListView(BaseBlogListView, ListView):
         context = super().get_context_data(**kwargs)
         return context
 
-
 class AuthorEntriesView(BaseBlogListView, ListView):
     view_url_name = "myblog:posts-author"
 
