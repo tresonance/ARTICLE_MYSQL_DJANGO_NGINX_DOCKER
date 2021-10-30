@@ -163,7 +163,6 @@ class AuthorEntriesView(BaseBlogListView, ListView):
         print("............... AuthorEntriesView .....................")
         qs = super(AuthorEntriesView, self).get_queryset()
         if "username" in self.kwargs:
-            #qs = qs.filter(**{"author__name" : self.kwargs["username"]})
             qs = qs.filter(**{"author__username" : self.kwargs["username"]})
         return self.optimize(qs)
 
