@@ -32,8 +32,9 @@
         {% cms_toolbar %}
         <div class="container">
             <ul class="nav">
-                {% show_menu 0 100 100 100 %}
+                {% show_menu 0 100 100 100 "menu_bar/navigation.html"  %}
             </ul>
+
             {% block content %}{% endblock content %}
         </div>
         {% render_block "js" %}
