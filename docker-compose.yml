@@ -1,0 +1,50 @@
+version: '3'
+
+services:
+
+  # Mysql Service
+  db: #MySQL service name, this will also be the host name
+    image: mysql:latest #W choose the latest image
+    container_name:  mysql_cont #the name we give to this container
+    restart: always #always restart to be sure it is always running
+    env_file:
+      - ./dev/.env #this file has all our nvironment variables
+    ports:          #the second 3306 is the container port
+      - '3306:3306' #it will be mapped to the first 3306, the host port
+    volumes:
+      - db_data:/var/lib/mysql #let's persist user data
+      - ./queries/init.sql:/docker-entrypoint-initdb.d/init.sql
+
+  # Django web Service
+  web:
+    build:
+      context: ./my_django_project #My Django BASE_DIR directory
+      dockerfile: Dockerfile_web #The Dockerfile to use
+    container_name:  web_cont #The name i give to this container
+    command: sh -c "bash/wait-for-it.sh -h db -p 3306 --timeout=300 &&
+            python manage.py collectstatic --noinput &&
+             python manage.py makemigrations &&
+             python manage.py migrate && 
+             python manage.py runserver 0.0.0.0:8000"
+    ports:
+      - "8000:8000"
+    depends_on:
+      - db
+
+  # NGINX Service
+  nginx:
+    image: nginx:latest
+    container_name:  nginx_cont
+    restart: unless-stopped
+    volumes:
+      - ./nginx:/etc/nginx/conf.d
+      - ./my_django_project/shoplink/static:/static
+      - ./my_django_project/shoplink/templates:/usr/share/nginx/html/templates
+    ports:
+      - "80:80"
+    depends_on:
+      - web
+    
+
+volumes:
+  db_data:

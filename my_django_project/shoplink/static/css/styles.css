@@ -1,0 +1,52 @@
+/* styles.css */
+/* Ajoutez vos styles CSS ici */
+
+body {
+    margin: 0 auto;
+    width: 90%;
+    height: 60;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+th, td {
+    border: 1px solid #adda;
+    padding: 8px;
+    text-align: left;
+    width:200px;
+}
+
+th {
+    background-color: #f2eaf2;
+}
+
+
+h2 {
+    margin: auto;
+    width: 80%;
+    border: 3px solid green;
+    padding: 10px;
+    text-align: center;
+}
+
+#app_name{
+    color: blue;
+}
+
+#category{
+    color:grey;
+}
+
+#app_nameb{
+    color: #e56a;
+}
+
+#categoryb{
+    color:#ff45;
+}
+
+
+
