@@ -145,6 +145,22 @@ server {
 }
 ```
 
+In browser, to use port 8000 (to ignore nginx) : localhost:8000/shop/sellers  OR localhost:8000/shop/buyers
+
+<p align="center">
+  <img src="./images/image_rendu1.png" width="350" alt="accessibility text">
+</p>
+
+To use port 80 (nginx with reverse proxy, note that you don't need to mention '80' inside the url, by default he port is '80'):  http://localhost/shop/buyers/    OR     http://localhost/shop/sellers/
+
+<p align="center">
+  <img src="./images/image_rendu2.png" width="350" alt="accessibility text">
+</p>
+
+
+
+
+
 <h3 style="color:red">4- HOW TO RUN</h3>
 You can use docker-compose up -d  to run.
 
