@@ -146,9 +146,9 @@ server {
 ```
 
 <h3 style="color:red">4- HOW TO RUN</h3>
-You can use docker-compose up -d 
+You can use docker-compose up -d  to run.
 
-but I used the below command to clean all before and run:
+but I have many others containers for others projects, i use my bult-in  command (see below) to clean all before and run:
 
 ```
 docker-compose down | docker ps -a | grep django | awk '{print $1}' | xargs docker rm -f && docker-compose down -v   && docker-compose up
