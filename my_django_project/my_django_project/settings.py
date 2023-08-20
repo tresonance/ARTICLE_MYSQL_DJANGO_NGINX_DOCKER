@@ -90,14 +90,17 @@ WSGI_APPLICATION = 'my_django_project.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
+# The following Database credenials will be provided by environment variables
+# inside docker_container web_cont (see docker-compose file) .
+
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'mydb',
-        'HOST': 'db',
-        'PASSWORD': 'rootpassword',
-        'PORT':  '3306',
-        'USER': 'root'
+        'ENGINE': os.environ.get("DJANGO_SETTING_DATABASE_ENGINE"),
+        'NAME': os.environ.get("DJANGO_SETTING_DATABASE_NAME"),
+        'HOST': os.environ.get("DJANGO_SETTING_DATABASE_HOST"), #this must be he same as database service name inside your docker-compose file
+        'PASSWORD':  os.environ.get("DJANGO_SETTING_DATABASE_ROOT_PASSWORD"),
+        'PORT': os.environ.get("DJANGO_SETTING_DATABASE_PORT"),
+        'USER': os.environ.get("DJANGO_SETTING_DATABASE_ROOT_USER")
     }
 }
 

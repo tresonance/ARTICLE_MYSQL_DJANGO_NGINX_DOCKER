@@ -34,4 +34,6 @@ RUN pip install  --use-pep517 -r  ./requirements.txt
 
 COPY .  .
 
+RUN chmod +x ./bash/*
+
 
