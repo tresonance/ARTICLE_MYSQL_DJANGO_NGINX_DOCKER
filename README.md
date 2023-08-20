@@ -54,12 +54,12 @@ shoplink/
 </pre>
 <h4>Here is the project tree:</h4>
 <p align="center">
-  <img src="./images/my_project_dir_tree.png" width="350" alt="accessibility text">
+  <img src="./images/my_project_tree_dir.png" width="350" alt="accessibility text">
 </p>
 
 <h4>And the tree with directories files</h4>
 <p align="center">
-  <img src="./images/my_project_tree.png" width="350" alt="accessibility text">
+  <img src="./images/project_tree_detail.png" width="350" alt="accessibility text">
 </p>
 
 <h3 style="color:red; border:2px solid black" >2- Services Inside Docker Compose </h3>
@@ -117,8 +117,9 @@ server {
     server_name localhost;
 
     location /static/ {
-        alias /static/;  # absolute path for static files, please do not forget  the slash at the end
+        alias /app/staticfiles/;  # absolute path for static files, please do not forget  the slash at the end
     }
+
 
     location /templates/ {
         alias /usr/share/nginx/html/templates;  # absolute path for html files
