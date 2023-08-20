@@ -168,7 +168,7 @@ You can use docker-compose up -d  to run.
 but I have many others containers for others projects, i use my bult-in  command (see below) to clean all before and run:
 
 ```
-docker-compose down | docker ps -a | grep django | awk '{print $1}' | xargs docker rm -f  && docker-compose up
+docker-compose down | docker-compose down -v | docker ps -a | grep django | awk '{print $1}' | xargs docker rm -f  && docker-compose up
 ```
 
 You can find more information in my article: https://medium.com/@ibrahimadev77/using-docker-compose-to-deploy-a-web-stack-with-mysql-django-nginx-b6c4222fdce0
